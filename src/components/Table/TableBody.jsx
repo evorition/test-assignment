@@ -1,5 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
+
+import TableRow from "./TableRow";
 
 import { ITEMS_PER_PAGE } from "../../constants";
 
@@ -17,6 +19,7 @@ const TableBody = () => {
 
   const onBeforeDragStart = () => {
     const cells = document.querySelectorAll(`tr > td`);
+    console.log(cells);
     cells.forEach((cell) => {
       const computedStyle = window.getComputedStyle(cell);
       cell.style.width = computedStyle.width;
@@ -40,24 +43,12 @@ const TableBody = () => {
         {(provided) => (
           <tbody ref={provided.innerRef} {...provided.droppableProps}>
             {stocks.map((stock, rowIndex) => (
-              <Draggable
-                key={stock.symbol}
-                draggableId={stock.symbol}
-                index={rowIndex}
-              >
-                {(provided) => (
-                  <tr
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                  >
-                    <td>{startPageIndex + rowIndex + 1}</td>
-                    {Object.values(stock).map((value, cellIndex) => (
-                      <td key={cellIndex}>{value}</td>
-                    ))}
-                  </tr>
-                )}
-              </Draggable>
+              <TableRow
+                key={rowIndex}
+                stock={stock}
+                rowIndex={rowIndex}
+                startPageIndex={startPageIndex}
+              />
             ))}
             {provided.placeholder}
           </tbody>

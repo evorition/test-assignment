@@ -5,7 +5,7 @@ const TableHeader = () => (
       <th>Symbol</th>
       <th>Price</th>
       <th>Size</th>
-      <th>Time</th>
+      <th>Timestamp</th>
     </tr>
   </thead>
 );

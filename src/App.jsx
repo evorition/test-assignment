@@ -7,6 +7,7 @@ import ErrorMessage from "./components/ErrorMessage";
 import LoadingSpinner from "./components/LoadingSpinner";
 import Pagination from "./components/Pagination";
 import Table from "./components/Table";
+import "./App.css";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ const App = () => {
     );
   }
 
-  return <>{content}</>;
+  return <div className="app">{content}</div>;
 };
+
 export default App;

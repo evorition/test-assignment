@@ -1,9 +1,10 @@
 import TableHeader from "./TableHeader";
 import TableBody from "./TableBody";
+import "./Table.css";
 
 const Table = () => {
   return (
-    <table>
+    <table className="table">
       <TableHeader />
       <TableBody />
     </table>

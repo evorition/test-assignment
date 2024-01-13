@@ -1,11 +1,11 @@
 const TableHeader = () => (
   <thead>
     <tr>
-      <td>#</td>
-      <td>Symbol</td>
-      <td>Price</td>
-      <td>Size</td>
-      <td>Time</td>
+      <th>#</th>
+      <th>Symbol</th>
+      <th>Price</th>
+      <th>Size</th>
+      <th>Time</th>
     </tr>
   </thead>
 );

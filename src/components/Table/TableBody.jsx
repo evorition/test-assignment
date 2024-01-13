@@ -15,6 +15,14 @@ const TableBody = () => {
   const stocks = useSelector(selectCurrentStocks);
   const startPageIndex = useSelector(selectPageIndex) * ITEMS_PER_PAGE;
 
+  const onBeforeDragStart = () => {
+    const cells = document.querySelectorAll(`tr > td`);
+    cells.forEach((cell) => {
+      const computedStyle = window.getComputedStyle(cell);
+      cell.style.width = computedStyle.width;
+    });
+  };
+
   const onDragEnd = ({ destination, source }) => {
     if (!destination) {
       return;
@@ -24,7 +32,10 @@ const TableBody = () => {
   };
 
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
+    <DragDropContext
+      onBeforeDragStart={onBeforeDragStart}
+      onDragEnd={onDragEnd}
+    >
       <Droppable droppableId="stocks">
         {(provided) => (
           <tbody ref={provided.innerRef} {...provided.droppableProps}>

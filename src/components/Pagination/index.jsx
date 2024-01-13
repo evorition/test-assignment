@@ -6,6 +6,7 @@ import {
   selectPageIndex,
   selectTotalPages,
 } from "../../reducers/stocksSlice";
+import "./Pagination.css";
 
 const Pagination = () => {
   const dispatch = useDispatch();
@@ -21,12 +22,22 @@ const Pagination = () => {
   };
 
   return (
-    <div>
-      <button onClick={handlePreviousPage} disabled={pageIndex === 0}>
+    <div className="pagination-container">
+      <button
+        className="pagination-button"
+        onClick={handlePreviousPage}
+        disabled={pageIndex === 0}
+      >
         Previous
       </button>
-      <span>{`Page ${pageIndex + 1} of ${totalPages}`}</span>
-      <button onClick={handleNextPage} disabled={pageIndex === totalPages}>
+      <span className="page-info">{`Page ${
+        pageIndex + 1
+      } of ${totalPages}`}</span>
+      <button
+        className="pagination-button"
+        onClick={handleNextPage}
+        disabled={pageIndex === totalPages}
+      >
         Next
       </button>
     </div>

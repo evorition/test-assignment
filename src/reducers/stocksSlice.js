@@ -23,6 +23,16 @@ const stocksSlice = createSlice({
   name: "stocks",
   initialState,
   reducers: {
+    reorderStocks: (state, action) => {
+      const destinationIndex = action.payload.destination.index;
+      const sourceIndex = action.payload.source.index;
+
+      const updatedCurrentStocks = state.currentStocks.slice();
+      const [draggedItem] = updatedCurrentStocks.splice(sourceIndex, 1);
+      updatedCurrentStocks.splice(destinationIndex, 0, draggedItem);
+
+      state.currentStocks = updatedCurrentStocks;
+    },
     incrementPage: (state, action) => {
       const nextPageIndex = state.pageIndex + 1;
       if (nextPageIndex <= state.totalPages) {
@@ -64,6 +74,7 @@ export const selectPageIndex = (state) => state.stocks.pageIndex;
 
 export const selectTotalPages = (state) => state.stocks.totalPages;
 
-export const { incrementPage, decrementPage } = stocksSlice.actions;
+export const { reorderStocks, incrementPage, decrementPage } =
+  stocksSlice.actions;
 
 export default stocksSlice.reducer;
